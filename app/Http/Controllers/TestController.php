@@ -9,9 +9,14 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\Redis;
+
 class TestController
 {
     public function test(){
-        dd("test");
+
+        Redis::command('append', ['name', "hahaha"]);
+        $ret=Redis::get("name");
+        dd("retis".$ret);
     }
 }
